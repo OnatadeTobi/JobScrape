@@ -5,7 +5,7 @@ set -e
 
 # Run migrations
 echo "Running migrations..."
-python manage.py migrate
+python manage.py migrate --verbosity 3 || { echo "Migration failed"; exit 1; }
 
 # Collect static files
 echo "Collecting static files..."
