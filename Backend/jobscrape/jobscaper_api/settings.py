@@ -162,9 +162,15 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://jobscrape.pxxl.click/",
-    "https://job-scrape.vercel.app/",
+    "https://jobscrape.pxxl.click",
+    "https://job-scrape.vercel.app",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_ALL_ORIGINS = True  # For demo, allow all. For production, set CORS_ALLOWED_ORIGINS = ['https://your-frontend-domain']
+#CORS_ALLOW_ALL_ORIGINS = True  # For demo, allow all. For production, set CORS_ALLOWED_ORIGINS = ['https://your-frontend-domain']
+
+CORS_ALLOW_ALL_ORIGINS = ["https://job-scrape.vercel.app"]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://jobscrape.pxxl.click',
+    ]
