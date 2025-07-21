@@ -1,19 +1,38 @@
-#!/bin/bash
+# #!/bin/bash
 
-# Exit on error
+# # Exit on error
+# set -e
+
+# # Run migrations
+# echo "Running migrations..."
+# python manage.py migrate --verbosity 3 || { echo "Migration failed"; exit 1; }
+
+# # Collect static files
+# echo "Collecting static files..."
+# python manage.py collectstatic --noinput
+
+# echo "Current DATABASE_URL: $DATABASE_URL"
+# python manage.py dbshell -c "SELECT current_database();"
+
+# # Start server
+# echo "Starting Gunicorn..."
+# exec gunicorn jobscaper_api.wsgi:application --bind 0.0.0.0:$PORT 
+
+#!/bin/bash
 set -e
 
-# Run migrations
-echo "Running migrations..."
-python manage.py migrate --verbosity 3 || { echo "Migration failed"; exit 1; }
+echo "Activating virtual environment..."
+. /opt/venv/bin/activate
 
-# Collect static files
+echo "Running migrations..."
+python manage.py migrate --noinput || { echo "Migration failed"; exit 1; }
+
 echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
 echo "Current DATABASE_URL: $DATABASE_URL"
-python manage.py dbshell -c "SELECT current_database();"
+echo "Verifying database connection..."
+psql $DATABASE_URL -c "SELECT current_database();" || { echo "Database connection failed"; exit 1; }
 
-# Start server
 echo "Starting Gunicorn..."
-exec gunicorn jobscaper_api.wsgi:application --bind 0.0.0.0:$PORT 
+exec gunicorn jobscaper_api.wsgi:application --bind 0.0.0.0:$PORT
