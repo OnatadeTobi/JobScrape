@@ -167,9 +167,7 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOW_CREDENTIALS = True
-#CORS_ALLOW_ALL_ORIGINS = True  # For demo, allow all. For production, set CORS_ALLOWED_ORIGINS = ['https://your-frontend-domain']
-
-CORS_ALLOW_ALL_ORIGINS = ["https://job-scrape.vercel.app"]
+CORS_ALLOW_ALL_ORIGINS = True  # For demo, allow all. For production, set CORS_ALLOWED_ORIGINS = ['https://your-frontend-domain']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://jobscrape.pxxl.click',
