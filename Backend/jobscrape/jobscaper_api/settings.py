@@ -35,7 +35,7 @@ DEBUG = env('DEBUG')
 GEMINI_API_KEY = env('GEMINI_API_KEY')
 
 # ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
-ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
 
 
 # Application definition
