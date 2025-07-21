@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'jobscaper_api.wsgi.application'
 
 if env('DATABASE_URL', default=None):
     DATABASES = {
-        'default': env.db('DATABASE_URL')
+        'default': env.db('DATABASE_URL', conn_max_age=60)
     }
 else:
     DATABASES = {

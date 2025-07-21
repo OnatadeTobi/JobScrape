@@ -33,4 +33,4 @@ python manage.py collectstatic --noinput
 echo "Current DATABASE_URL: $DATABASE_URL"
 
 echo "Starting Gunicorn..."
-exec gunicorn jobscaper_api.wsgi:application --bind 0.0.0.0:$PORT
+exec gunicorn jobscaper_api.wsgi:application --bind 0.0.0.0:$PORT --workers 1
