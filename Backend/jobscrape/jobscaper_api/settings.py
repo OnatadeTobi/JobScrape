@@ -34,7 +34,8 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG = env('DEBUG')
 GEMINI_API_KEY = env('GEMINI_API_KEY')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.railway.app']
+# ALLOWED_HOSTS = ['localhost', '127.0.0.1',]
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
 
 # Application definition
@@ -149,6 +150,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "https://jobscrape.pxxl.click/",
+    "https://job-scrape.vercel.app/",
 ]
 
 CORS_ALLOW_CREDENTIALS = True

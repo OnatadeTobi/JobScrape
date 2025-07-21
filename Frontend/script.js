@@ -1,5 +1,4 @@
-// API Base URL - change this to match your Django server
-const API_BASE_URL = 'http://localhost:8000/api'; // Update this when your Django runs on different port
+const API_BASE_URL = 'https://jobscrape.pxxl.click/api'; 
 
 // Get all the elements we need
 const jobUrlInput = document.getElementById('jobUrl');
