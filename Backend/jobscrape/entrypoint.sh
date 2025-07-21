@@ -31,8 +31,6 @@ echo "Collecting static files..."
 python manage.py collectstatic --noinput
 
 echo "Current DATABASE_URL: $DATABASE_URL"
-echo "Verifying database connection..."
-psql $DATABASE_URL -c "SELECT current_database();" || { echo "Database connection failed"; exit 1; }
 
 echo "Starting Gunicorn..."
 exec gunicorn jobscaper_api.wsgi:application --bind 0.0.0.0:$PORT
