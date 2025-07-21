@@ -9,7 +9,7 @@ const errorMessage = document.getElementById('errorMessage');
 const jobInfoDiv = document.getElementById('jobInfo');
 const saveBtn = document.getElementById('saveBtn');
 const loadJobsBtn = document.getElementById('loadJobsBtn');
-const savedJobsDiv = document.getElementById('savedJobs');
+const savedJobsDiv = document.getElementById('savedJobs'); 
 
 // --- Auth State Management ---
 function isLoggedIn() {
