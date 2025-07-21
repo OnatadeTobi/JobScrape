@@ -1,0 +1,503 @@
+/* Modern reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --glass-bg: rgba(255, 255, 255, 0.25);
+    --glass-border: rgba(255, 255, 255, 0.18);
+    --shadow-light: 0 8px 32px rgba(31, 38, 135, 0.15);
+    --shadow-heavy: 0 20px 60px rgba(31, 38, 135, 0.25);
+    --text-primary: #2d3748;
+    --text-secondary: #4a5568;
+    --border-color: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Animated background particles */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    33% { transform: translateY(-20px) rotate(1deg); }
+    66% { transform: translateY(10px) rotate(-1deg); }
+}
+
+/* Container with glassmorphism */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Glassmorphism header */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 60px 40px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-heavy);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+header:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 80px rgba(31, 38, 135, 0.35);
+}
+
+header h1 {
+    font-size: 4em;
+    margin-bottom: 15px;
+    font-weight: 800;
+    background: linear-gradient(45deg, #ffffff, #f0f0f0, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255,255,255,0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+    to { text-shadow: 0 0 30px rgba(255,255,255,0.8); }
+}
+
+header p {
+    font-size: 1.4em;
+    opacity: 0.9;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* Glassmorphism cards */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+    padding: 40px;
+    margin-bottom: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent);
+}
+
+.glass-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-heavy);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Input Section */
+.input-section {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+#jobUrl {
+    flex: 1;
+    padding: 20px 25px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+#jobUrl::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+#jobUrl:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.02);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced buttons */
+.btn {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    padding: 20px 35px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: all 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+.btn:disabled {
+    background: rgba(255, 255, 255, 0.2);
+    cursor: not-allowed;
+    transform: none;
+}
+
+#fetchBtn { background: var(--primary-gradient); }
+#saveBtn { background: var(--success-gradient); }
+#loadJobsBtn { background: var(--secondary-gradient); }
+
+/* Loading animation */
+.loading {
+    text-align: center;
+    color: white;
+}
+
+.loading p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+}
+
+.loading::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Error styling */
+.error {
+    background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 10px 30px rgba(238, 90, 82, 0.3);
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Job info display */
+.job-info h3 {
+    color: white;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: 700;
+    text-align: center;
+}
+
+.job-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 35px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.job-card:hover {
+    transform: scale(1.02);
+    color: inherit;
+    /* No background or gradient here */
+}
+
+.job-card h4 {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2em;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.job-card:hover h4 {
+    color: #fff;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.job-card p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.job-card strong {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* Saved jobs styling */
+.saved-jobs-section h3 {
+    color: white;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+    font-weight: 700;
+    text-align: center;
+}
+
+.saved-jobs {
+    display: grid;
+    gap: 20px;
+}
+
+.saved-job-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.saved-job-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--success-gradient);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.saved-job-item:hover::before {
+    transform: scaleX(1);
+}
+
+.saved-job-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(31, 38, 135, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.saved-job-item h4 {
+    background: var(--success-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    font-weight: 700;
+}
+
+.saved-job-item p {
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saved-job-item strong {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Hidden state */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive design */
+.header-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+.header-title {
+    text-align: left;
+}
+.header-auth {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+@media (max-width: 768px) {
+    .header-main {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+    .header-title {
+        text-align: center;
+    }
+    .header-auth {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .input-section {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #jobUrl {
+        width: 100%;
+    }
+    
+    header {
+        padding: 40px 20px;
+    }
+    
+    header h1 {
+        font-size: 2.5em;
+    }
+    
+    .glass-card {
+        padding: 25px;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2em;
+    }
+    
+    header p {
+        font-size: 1.1em;
+    }
+    
+    .glass-card {
+        padding: 20px;
+    }
+}

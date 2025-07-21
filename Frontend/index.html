@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobScrape</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-main">
+                <div class="header-title">
+                    <h1>JobScrape</h1>
+                    <p>Extract job information from any job posting URL</p>
+                </div>
+                <div class="header-auth">
+                    <button id="authBtn" class="btn">Login / Register</button>
+                    <button id="logoutBtn" class="btn hidden">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- URL Input Section -->
+        <div class="glass-card">
+            <div class="input-section">
+                <input type="url" id="jobUrl" placeholder="🔗 Paste any job URL here..." />
+                <button id="fetchBtn" class="btn">✨ Extract Job Info</button>
+            </div>
+        </div>
+
+        <!-- Loading indicator -->
+        <div id="loading" class="glass-card loading hidden">
+            <p>🚀 Extracting job information...</p>
+        </div>
+
+        <!-- Error message -->
+        <div id="error" class="error hidden">
+            <p id="errorMessage"></p>
+        </div>
+
+        <!-- Extracted job info -->
+        <div id="jobInfo" class="glass-card job-info hidden">
+            <h3>✅ Extracted Job Information</h3>
+            <div class="job-card">
+                <h4 id="jobTitle"></h4>
+                <p><strong>🏢 Company</strong> <span id="jobCompany"></span></p>
+                <p><strong>📍 Location</strong> <span id="jobLocation"></span></p>
+                <p><strong>💼 Type</strong> <span id="jobType"></span></p>
+                <p><strong>💰 Pay</strong> <span id="jobPay"></span></p>
+                <p><strong>🌐 Platform</strong> <span id="jobPlatform"></span></p>
+                <button id="saveBtn" class="btn">💾 Save This Job</button>
+            </div>
+        </div>
+
+        <!-- Saved jobs section -->
+        <div class="glass-card saved-jobs-section">
+            <h3>📚 Your Saved Jobs</h3>
+            <button id="loadJobsBtn" class="btn">🔄 Load My Saved Jobs</button>
+            <div id="savedJobs" class="saved-jobs"></div>
+        </div>
+    </div>
+
+    <!-- Login/Register Modal -->
+    <div id="authModal" class="glass-card hidden" style="max-width:400px;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1000;">
+        <h3 id="authModalTitle">Login or Register</h3>
+        <form id="authForm">
+            <input type="email" id="authEmail" placeholder="Email" required style="width:100%;margin-bottom:10px;padding:10px;" />
+            <input type="password" id="authPassword" placeholder="Password" required style="width:100%;margin-bottom:10px;padding:10px;" />
+            <input type="password" id="authPassword2" placeholder="Confirm Password" style="width:100%;margin-bottom:10px;padding:10px;display:none;" />
+            <div style="display:flex;gap:10px;">
+                <button type="submit" id="loginBtn" class="btn" style="flex:1;">Login</button>
+                <button type="button" id="switchToRegisterBtn" class="btn" style="flex:1;">Register</button>
+            </div>
+            <button type="button" id="closeAuthModal" class="btn" style="margin-top:10px;width:100%;background:var(--secondary-gradient);">Cancel</button>
+        </form>
+        <div id="authError" class="error hidden" style="margin-top:10px;"><p id="authErrorMsg"></p></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
