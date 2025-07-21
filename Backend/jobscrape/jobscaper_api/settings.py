@@ -97,10 +97,23 @@ WSGI_APPLICATION = 'jobscaper_api.wsgi.application'
 #     }
 # }
 
+# if env('DATABASE_URL', default=None):
+#     DATABASES = {
+#         'default': env.db('DATABASE_URL', conn_max_age=60)
+#     }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#         }
+#     }
+
+
 if env('DATABASE_URL', default=None):
-    DATABASES = {
-        'default': env.db('DATABASE_URL', conn_max_age=60)
-    }
+    db_config = env.db('DATABASE_URL')
+    db_config['CONN_MAX_AGE'] = 60
+    DATABASES = {'default': db_config}
 else:
     DATABASES = {
         'default': {
