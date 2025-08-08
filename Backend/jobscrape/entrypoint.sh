@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-echo "Activating virtual environment..."
-. /opt/venv/bin/activate
-
 echo "Running migrations..."
 python manage.py migrate --noinput || { echo "Migration failed"; exit 1; }
 
