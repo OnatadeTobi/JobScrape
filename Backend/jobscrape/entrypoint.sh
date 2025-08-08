@@ -1,3 +1,22 @@
+#!/bin/bash
+set -e
+
+echo "Activating virtual environment..."
+. /opt/venv/bin/activate
+
+echo "Running migrations..."
+python manage.py migrate --noinput || { echo "Migration failed"; exit 1; }
+
+echo "Collecting static files..."
+python manage.py collectstatic --noinput
+
+echo "Current DATABASE_URL: $DATABASE_URL"
+
+echo "Starting Gunicorn..."
+exec gunicorn jobscaper_api.wsgi:application --bind 0.0.0.0:$PORT --workers 1
+
+
+
 # #!/bin/bash
 
 # # Exit on error
@@ -17,20 +36,3 @@
 # # Start server
 # echo "Starting Gunicorn..."
 # exec gunicorn jobscaper_api.wsgi:application --bind 0.0.0.0:$PORT 
-
-#!/bin/bash
-set -e
-
-echo "Activating virtual environment..."
-. /opt/venv/bin/activate
-
-echo "Running migrations..."
-python manage.py migrate --noinput || { echo "Migration failed"; exit 1; }
-
-echo "Collecting static files..."
-python manage.py collectstatic --noinput
-
-echo "Current DATABASE_URL: $DATABASE_URL"
-
-echo "Starting Gunicorn..."
-exec gunicorn jobscaper_api.wsgi:application --bind 0.0.0.0:$PORT --workers 1
