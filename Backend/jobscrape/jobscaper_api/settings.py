@@ -177,6 +177,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "https://jobscrape.pxxl.click",
     "https://job-scrape.vercel.app",
+    "https://jobscrape-7d67.onrender.com",
+    "https://jobscrape-i388.onrender.com",
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -184,4 +186,6 @@ CORS_ALLOW_ALL_ORIGINS = True  # For demo, allow all. For production, set CORS_A
 
 CSRF_TRUSTED_ORIGINS = [
     'https://jobscrape.pxxl.click',
+    "https://jobscrape-7d67.onrender.com",
+    "https://jobscrape-i388.onrender.com",
     ]
