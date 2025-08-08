@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://jobscrape.pxxl.click/api'; 
+const API_BASE_URL = 'https://jobscrape-7d67.onrender.com/api';   //  https://jobscrape.pxxl.click/api
 
 // Get all the elements we need
 const jobUrlInput = document.getElementById('jobUrl');
